@@ -1,9 +1,12 @@
-import logo from './logo.svg';
-import './Button.css';
+import logo from "./logo.svg";
+import "./Button.css";
 
-function Button({value,onClick}) {
+function Button({ value, onClick }) {
   return (
-      <button className="dice-button" onClick={onClick}> {value}</button>
+    <button className="dice-button" onClick={onClick}>
+      {" "}
+      {value}
+    </button>
   );
 }
 
