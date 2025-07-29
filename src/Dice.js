@@ -1,7 +1,6 @@
-import logo from "./logo.svg";
-import "./Button.css";
+import "./Dice.css";
 
-function Button({ value, onClick }) {
+function Dice({ value, onClick }) {
   return (
     <button className="dice-button" onClick={onClick}>
       {" "}
@@ -10,4 +9,4 @@ function Button({ value, onClick }) {
   );
 }
 
-export default Button;
+export default Dice;

@@ -1,5 +1,5 @@
 import "./App.css";
-import Button from "./Button";
+import Dice from "./Dice";
 
 import { useState } from "react";
 
@@ -11,7 +11,6 @@ function getAllDice() {
   return Array.from({ length: 5 }, () => getRandomValue());
 }
 
-function getNewDice() {}
 function App() {
   const [buttonValue, setButtonValue] = useState(getRandomValue());
   const [allDiceList, setAllDiceList] = useState(getAllDice());
@@ -20,14 +19,20 @@ function App() {
     setButtonValue(getRandomValue());
     console.log(getAllDice());
   }
-
+  function setNewDice() {
+    setAllDiceList(getAllDice());
+  }
   console.log(allDiceList);
   return (
     <div className="App">
       <header className="App-header">
+        <button type="button" onClick={setNewDice}>
+          {" "}
+          Roll{" "}
+        </button>
         <div>
           {allDiceList.map((item, index) => (
-            <Button value={item} key={index} onClick={diceClick}></Button>
+            <Dice value={item} key={index} onClick={diceClick}></Dice>
           ))}
         </div>
       </header>
