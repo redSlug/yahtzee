@@ -20,3 +20,4 @@ npm start
 ## Credits
 - This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app)
 - Thanks [Naini Yashwanth](https://uiverse.io/Yashwanthnaini/dry-panther-24) for "roll" button css
+- Thanks [Game-icons.net](https://game-icons.net/1x1/delapouite/perspective-dice-six-faces-random.html) for the favicon
