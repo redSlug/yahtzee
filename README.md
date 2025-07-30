@@ -1,6 +1,8 @@
 # Yahtzee
 Utility for rolling dice
 
+[try it out!](https://redslug.github.io/yahtzee/)
+
 ![screenshot](screenshot.png)
 
 ## Develop
