@@ -2,37 +2,57 @@ import "./App.css";
 import Dice from "./Dice";
 
 import { useState } from "react";
+import { deepClone } from "./utilities";
 
 function getRandomValue() {
   return Math.floor(Math.random() * 6) + 1;
 }
 
-function getAllDice() {
-  return Array.from({ length: 5 }, () => getRandomValue());
+function rollAllDice() {
+  return Array.from({ length: 5 }, () => {
+    return { value: getRandomValue(), isPressed: false };
+  });
 }
 
 function App() {
-  const [buttonValue, setButtonValue] = useState(getRandomValue());
-  const [allDiceList, setAllDiceList] = useState(getAllDice());
+  const [allDiceList, setAllDiceList] = useState(rollAllDice());
 
-  function diceClick() {
-    setButtonValue(getRandomValue());
-    console.log(getAllDice());
+  function diceClickCallback(index) {
+    let newDiceList = deepClone(allDiceList);
+    newDiceList[index].isPressed = !newDiceList[index].isPressed;
+    setAllDiceList(newDiceList);
   }
-  function setNewDice() {
-    setAllDiceList(getAllDice());
+
+  function rollNonPressedDice() {
+    let newDiceList = deepClone(allDiceList);
+    for (let i = 0; i < newDiceList.length; i++) {
+      if (newDiceList[i].isPressed) {
+        newDiceList[i].value = allDiceList[i].value;
+      } else {
+        newDiceList[i].value = getRandomValue();
+      }
+    }
+    setAllDiceList(newDiceList);
   }
-  console.log(allDiceList);
+
   return (
     <div className="App">
       <header className="App-header">
-        <button type="button" onClick={setNewDice}>
-          {" "}
-          Roll{" "}
+        <button
+          type="button"
+          className="roll-button"
+          onClick={rollNonPressedDice}
+        >
+          Roll
         </button>
         <div>
           {allDiceList.map((item, index) => (
-            <Dice value={item} key={index} onClick={diceClick}></Dice>
+            <Dice
+              value={item.value}
+              key={index}
+              onClick={() => diceClickCallback(index)}
+              isPressed={item.isPressed}
+            ></Dice>
           ))}
         </div>
       </header>

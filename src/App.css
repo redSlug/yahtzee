@@ -2,11 +2,6 @@
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;
@@ -14,7 +9,7 @@
 }
 
 .App-header {
-  background-color: #282c34;
+  background-color: cornflowerblue;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -24,15 +19,40 @@
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.roll-button{
+  height: fit-content;
+  width: fit-content;
+  font-size: larger;
+  margin: 20px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+
+/* From Uiverse.io by Yashwanthnaini */
+.roll-button {
+  border: none;
+  border-radius: 20px;
+  background: linear-gradient(32deg,#03a9f4,#f441a5,#ffeb3b,#03a9f4);
+  transition: all 1.5s ease;
+  font-family: 'Ropa Sans', sans-serif;
+  font-weight: bold;
+  letter-spacing: 0.05rem;
+  padding: 30px;
+}
+
+.roll-button span {
+  display: inline-block;
+  padding: 15px 35px;
+  font-size: 17px;
+  border-radius: 20px;
+  background: #ffffff10;
+  backdrop-filter: blur(20px);
+  transition: 0.4s ease-in-out;
+  transition-property: color;
+  height: 100%;
+  width: 100%;
+}
+
+.roll-button span:hover {
+  backdrop-filter: blur(0px);
+  color: #ffffff;
 }

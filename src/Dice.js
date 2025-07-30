@@ -1,8 +1,11 @@
 import "./Dice.css";
 
-function Dice({ value, onClick }) {
+function Dice({ value, onClick, isPressed }) {
   return (
-    <button className="dice-button" onClick={onClick}>
+    <button
+      className={isPressed ? "dice-button-pressed" : "dice-button"}
+      onClick={onClick}
+    >
       {" "}
       {value}
     </button>
