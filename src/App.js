@@ -16,14 +16,17 @@ function rollAllDice() {
 
 function App() {
   const [allDiceList, setAllDiceList] = useState(rollAllDice());
-
+  const [rollCount, setRollCount] = useState(3);
   function diceClickCallback(index) {
     let newDiceList = deepClone(allDiceList);
     newDiceList[index].isPressed = !newDiceList[index].isPressed;
+
     setAllDiceList(newDiceList);
   }
 
   function rollNonPressedDice() {
+    setRollCount(rollCount - 1);
+    console.log(rollCount);
     let newDiceList = deepClone(allDiceList);
     for (let i = 0; i < newDiceList.length; i++) {
       if (newDiceList[i].isPressed) {
@@ -41,6 +44,7 @@ function App() {
         <button
           type="button"
           className="roll-button"
+          disabled={rollCount === 0}
           onClick={rollNonPressedDice}
         >
           Roll
