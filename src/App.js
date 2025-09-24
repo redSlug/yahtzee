@@ -1,5 +1,6 @@
 import "./App.css";
 import Dice from "./Dice";
+import ScoreCard from "./Scorecard";
 
 import { useState } from "react";
 import { deepClone } from "./utilities";
@@ -49,6 +50,7 @@ function App() {
         >
           Roll
         </button>
+
         <div>
           {allDiceList.map((item, index) => (
             <Dice
@@ -59,6 +61,7 @@ function App() {
             ></Dice>
           ))}
         </div>
+        <ScoreCard value="hello"></ScoreCard>
       </header>
     </div>
   );
