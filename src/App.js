@@ -45,7 +45,7 @@ function App() {
       <header className="App-header">
         <RollButton
           onClick={rollNonPressedDice}
-          disabled={rollCount <= 0}
+          isDisabled={rollCount <= 0}
         ></RollButton>
         <div>
           {allDiceList.map((item, index) => (

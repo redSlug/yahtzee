@@ -1,11 +1,11 @@
 import "./RollButton.css";
 
-function RollButton({ onClick, isDisabeled }) {
+function RollButton({ onClick, isDisabled }) {
   return (
     <button
       type="button"
       className="roll-button"
-      disabled={isDisabeled}
+      disabled={isDisabled}
       onClick={onClick}
     >
       Roll
