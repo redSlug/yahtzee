@@ -4,6 +4,7 @@ import ScoreCard from "./Scorecard";
 
 import { useState } from "react";
 import { deepClone } from "./utilities";
+import RollButton from "./RollButton";
 
 function getRandomValue() {
   return Math.floor(Math.random() * 6) + 1;
@@ -42,15 +43,10 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <button
-          type="button"
-          className="roll-button"
-          disabled={rollCount === 0}
+        <RollButton
           onClick={rollNonPressedDice}
-        >
-          Roll
-        </button>
-
+          disabled={rollCount <= 0}
+        ></RollButton>
         <div>
           {allDiceList.map((item, index) => (
             <Dice
