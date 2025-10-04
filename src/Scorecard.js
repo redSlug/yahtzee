@@ -41,19 +41,31 @@ function ScoreCard({ allDice, scoreCard, handleScoreCardUpdate }) {
       <p className="score-card-header">ScoreCard</p>
       <div className="score-row">
         ones: {scoreCard.ones}
-        <button type="button" onClick={updateOnes}>
+        <button
+          type="button"
+          disabled={scoreCard.ones !== undefined}
+          onClick={updateOnes}
+        >
           Choose
         </button>
       </div>
       <div className="score-row">
         twos: {scoreCard.twos}
-        <button type="button" onClick={updateTwos}>
+        <button
+          type="button"
+          disabled={scoreCard.twos !== undefined}
+          onClick={updateTwos}
+        >
           Choose
         </button>
       </div>
       <div className="score-row">
         threes: {scoreCard.threes}
-        <button type="button" onClick={updateThrees}>
+        <button
+          type="button"
+          disabled={scoreCard.threes !== undefined}
+          onClick={updateThrees}
+        >
           Choose
         </button>
       </div>
