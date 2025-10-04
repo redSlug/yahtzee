@@ -7,3 +7,10 @@ font-weight: bold;
 .score-card-body {
     color:black
 }
+
+.score-row {
+    background-color: lightblue;
+}
+.total-score {
+    background-color: lightgreen;
+}
