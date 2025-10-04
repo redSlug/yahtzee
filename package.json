@@ -2,7 +2,7 @@
   "name": "yahtzee",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://redslug.github.io/yahtzee/",
+  "homepage": "https://greenrabbit917.github.io/yahtzee/",
   "dependencies": {
     "@testing-library/dom": "^10.4.1",
     "@testing-library/jest-dom": "^6.6.4",
