@@ -13,6 +13,9 @@ function getInitialScoreCard() {
     ones: undefined,
     twos: undefined,
     threes: undefined,
+    fours: undefined,
+    fives: undefined,
+    sixes: undefined,
     totalScore: 0,
   };
 }

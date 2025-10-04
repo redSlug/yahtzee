@@ -36,6 +36,33 @@ function ScoreCard({ allDice, scoreCard, handleScoreCardUpdate }) {
     });
   }
 
+  function updateFours() {
+    const { newRowScore, newTotal } = getNewRowScore(4, scoreCard.four);
+    return handleScoreCardUpdate({
+      ...scoreCard,
+      totalScore: newTotal,
+      fours: newRowScore,
+    });
+  }
+
+  function updateFives() {
+    const { newRowScore, newTotal } = getNewRowScore(5, scoreCard.fives);
+    return handleScoreCardUpdate({
+      ...scoreCard,
+      totalScore: newTotal,
+      fives: newRowScore,
+    });
+  }
+
+  function updateSixes() {
+    const { newRowScore, newTotal } = getNewRowScore(6, scoreCard.sixes);
+    return handleScoreCardUpdate({
+      ...scoreCard,
+      totalScore: newTotal,
+      sixes: newRowScore,
+    });
+  }
+
   return (
     <>
       <p className="score-card-header">ScoreCard</p>
@@ -69,6 +96,40 @@ function ScoreCard({ allDice, scoreCard, handleScoreCardUpdate }) {
           Choose
         </button>
       </div>
+
+      <div className="score-row">
+        fours: {scoreCard.fours}
+        <button
+          type="button"
+          disabled={scoreCard.fours !== undefined}
+          onClick={updateFours}
+        >
+          Choose
+        </button>
+      </div>
+
+      <div className="score-row">
+        fives: {scoreCard.fives}
+        <button
+          type="button"
+          disabled={scoreCard.fives !== undefined}
+          onClick={updateFives}
+        >
+          Choose
+        </button>
+      </div>
+
+      <div className="score-row">
+        sixes: {scoreCard.sixes}
+        <button
+          type="button"
+          disabled={scoreCard.sixes !== undefined}
+          onClick={updateSixes}
+        >
+          Choose
+        </button>
+      </div>
+
       <div className="total-score">Total Score = {scoreCard.totalScore}</div>
     </>
   );
