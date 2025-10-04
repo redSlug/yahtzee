@@ -6,6 +6,8 @@ import { useState } from "react";
 import { deepClone } from "./utilities";
 import RollButton from "./RollButton";
 
+const INITIAL_ROLL_COUNT = 3;
+
 function getInitialScoreCard() {
   return {
     ones: undefined,
@@ -26,7 +28,7 @@ function rollAllDice() {
 
 function App() {
   const [allDice, setAllDice] = useState(rollAllDice());
-  const [rollCount, setRollCount] = useState(3);
+  const [rollCount, setRollCount] = useState(INITIAL_ROLL_COUNT);
   const [scoreCard, setScoreCard] = useState(getInitialScoreCard());
   function diceClickCallback(index) {
     let newDice = deepClone(allDice);
@@ -49,6 +51,12 @@ function App() {
     setAllDice(newDice);
   }
 
+  function updateScoreCard(newScoreCard) {
+    setScoreCard(newScoreCard);
+    setAllDice(rollAllDice);
+    setRollCount(INITIAL_ROLL_COUNT);
+  }
+
   return (
     <div className="App">
       <header className="App-header">
@@ -68,7 +76,7 @@ function App() {
         </div>
         <ScoreCard
           scoreCard={scoreCard}
-          handleScoreCardUpdate={setScoreCard}
+          handleScoreCardUpdate={updateScoreCard}
         ></ScoreCard>
       </header>
     </div>
