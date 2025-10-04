@@ -65,6 +65,10 @@ function App() {
           onClick={rollNonPressedDice}
           isDisabled={rollCount <= 0}
         ></RollButton>
+        <div className={"roll-count-message"}>
+          you have {rollCount} rolls left!{" "}
+          {rollCount === 0 ? "you must click score card" : ""}
+        </div>
         <div>
           {allDice.map((item, index) => (
             <Dice
