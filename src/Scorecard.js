@@ -15,7 +15,9 @@ function ScoreCard({ scoreCard, handleScoreCardUpdate }) {
       </div>
       <div className="score-row">
         twos: {scoreCard.twos}
-        <button type="button">Choose</button>
+        <button type="button" onClick={updateScore}>
+          Choose
+        </button>
       </div>
       <div className="total-score">Total Score = {scoreCard.totalScore}</div>
     </>
