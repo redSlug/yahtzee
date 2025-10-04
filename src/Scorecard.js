@@ -1,12 +1,17 @@
 import "./ScoreCard.css";
 
 function ScoreCard({ allDice, scoreCard, handleScoreCardUpdate }) {
+  function getNewRowScore(dieNumber, scoreCardRowValue) {
+    let initialRowScore = scoreCardRowValue | 0;
+    let count = allDice.filter((x) => x.value === dieNumber).length;
+    const newRowScore = initialRowScore + count * dieNumber;
+    const newTotal = scoreCard.totalScore + count * dieNumber;
+    return { newRowScore, newTotal };
+  }
+
   function updateOnes() {
-    let initialRowScore = scoreCard.ones | 0;
-    let count = allDice.filter((x) => x.value === 1).length;
-    let newRowScore = initialRowScore + count;
-    let newTotal = scoreCard.totalScore + count;
-    handleScoreCardUpdate({
+    const { newRowScore, newTotal } = getNewRowScore(1, scoreCard.ones);
+    return handleScoreCardUpdate({
       ...scoreCard,
       totalScore: newTotal,
       ones: newRowScore,
@@ -14,14 +19,20 @@ function ScoreCard({ allDice, scoreCard, handleScoreCardUpdate }) {
   }
 
   function updateTwos() {
-    let initialRowScore = scoreCard.twos | 0;
-    let count = allDice.filter((x) => x.value === 2).length;
-    let newRowScore = initialRowScore + count * 2;
-    let newTotal = scoreCard.totalScore + count * 2;
-    handleScoreCardUpdate({
+    const { newRowScore, newTotal } = getNewRowScore(2, scoreCard.twos);
+    return handleScoreCardUpdate({
       ...scoreCard,
       totalScore: newTotal,
       twos: newRowScore,
+    });
+  }
+
+  function updateThrees() {
+    const { newRowScore, newTotal } = getNewRowScore(3, scoreCard.threes);
+    return handleScoreCardUpdate({
+      ...scoreCard,
+      totalScore: newTotal,
+      threes: newRowScore,
     });
   }
 
@@ -37,6 +48,12 @@ function ScoreCard({ allDice, scoreCard, handleScoreCardUpdate }) {
       <div className="score-row">
         twos: {scoreCard.twos}
         <button type="button" onClick={updateTwos}>
+          Choose
+        </button>
+      </div>
+      <div className="score-row">
+        threes: {scoreCard.threes}
+        <button type="button" onClick={updateThrees}>
           Choose
         </button>
       </div>

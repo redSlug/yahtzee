@@ -12,6 +12,7 @@ function getInitialScoreCard() {
   return {
     ones: undefined,
     twos: undefined,
+    threes: undefined,
     totalScore: 0,
   };
 }
