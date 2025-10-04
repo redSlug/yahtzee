@@ -75,6 +75,7 @@ function App() {
           ))}
         </div>
         <ScoreCard
+          allDice={allDice}
           scoreCard={scoreCard}
           handleScoreCardUpdate={updateScoreCard}
         ></ScoreCard>
