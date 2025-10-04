@@ -25,28 +25,28 @@ function rollAllDice() {
 }
 
 function App() {
-  const [allDiceList, setAllDiceList] = useState(rollAllDice());
+  const [allDice, setAllDice] = useState(rollAllDice());
   const [rollCount, setRollCount] = useState(3);
   const [scoreCard, setScoreCard] = useState(getInitialScoreCard());
   function diceClickCallback(index) {
-    let newDiceList = deepClone(allDiceList);
-    newDiceList[index].isPressed = !newDiceList[index].isPressed;
+    let newDice = deepClone(allDice);
+    newDice[index].isPressed = !newDice[index].isPressed;
 
-    setAllDiceList(newDiceList);
+    setAllDice(newDice);
   }
 
   function rollNonPressedDice() {
     setRollCount(rollCount - 1);
     console.log(rollCount);
-    let newDiceList = deepClone(allDiceList);
-    for (let i = 0; i < newDiceList.length; i++) {
-      if (newDiceList[i].isPressed) {
-        newDiceList[i].value = allDiceList[i].value;
+    let newDice = deepClone(allDice);
+    for (let i = 0; i < newDice.length; i++) {
+      if (newDice[i].isPressed) {
+        newDice[i].value = allDice[i].value;
       } else {
-        newDiceList[i].value = getRandomValue();
+        newDice[i].value = getRandomValue();
       }
     }
-    setAllDiceList(newDiceList);
+    setAllDice(newDice);
   }
 
   return (
@@ -57,7 +57,7 @@ function App() {
           isDisabled={rollCount <= 0}
         ></RollButton>
         <div>
-          {allDiceList.map((item, index) => (
+          {allDice.map((item, index) => (
             <Dice
               value={item.value}
               key={index}
