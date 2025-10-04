@@ -9,6 +9,24 @@ function ScoreCard({ allDice, scoreCard, handleScoreCardUpdate }) {
     return { newRowScore, newTotal };
   }
 
+  function isYahtzee() {
+    for (let dieNumber = 1; dieNumber <= 6; dieNumber++) {
+      let count = allDice.filter((x) => x.value === dieNumber).length;
+      console.log(
+        "jaiden count=",
+        count,
+        " dieNumber=",
+        dieNumber,
+        " allDice=",
+        allDice,
+      );
+      if (count === 5) {
+        return true;
+      }
+    }
+    return false;
+  }
+
   function updateOnes() {
     const { newRowScore, newTotal } = getNewRowScore(1, scoreCard.ones);
     return handleScoreCardUpdate({
@@ -60,6 +78,14 @@ function ScoreCard({ allDice, scoreCard, handleScoreCardUpdate }) {
       ...scoreCard,
       totalScore: newTotal,
       sixes: newRowScore,
+    });
+  }
+
+  function updateYahtzee() {
+    return handleScoreCardUpdate({
+      ...scoreCard,
+      yahtzee: 50,
+      totalScore: scoreCard.totalScore + 50,
     });
   }
 
@@ -126,6 +152,13 @@ function ScoreCard({ allDice, scoreCard, handleScoreCardUpdate }) {
           disabled={scoreCard.sixes !== undefined}
           onClick={updateSixes}
         >
+          Choose
+        </button>
+      </div>
+
+      <div className="score-row">
+        yahtzee: {scoreCard.yahtzee}
+        <button type="button" disabled={!isYahtzee()} onClick={updateYahtzee}>
           Choose
         </button>
       </div>

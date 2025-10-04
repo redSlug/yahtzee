@@ -16,6 +16,7 @@ function getInitialScoreCard() {
     fours: undefined,
     fives: undefined,
     sixes: undefined,
+    yahtzee: undefined,
     totalScore: 0,
   };
 }
