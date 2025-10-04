@@ -6,6 +6,14 @@ import { useState } from "react";
 import { deepClone } from "./utilities";
 import RollButton from "./RollButton";
 
+function getInitialScoreCard() {
+  return {
+    ones: undefined,
+    twos: undefined,
+    totalScore: 0,
+  };
+}
+
 function getRandomValue() {
   return Math.floor(Math.random() * 6) + 1;
 }
@@ -19,6 +27,7 @@ function rollAllDice() {
 function App() {
   const [allDiceList, setAllDiceList] = useState(rollAllDice());
   const [rollCount, setRollCount] = useState(3);
+  const [scoreCard, setScoreCard] = useState(getInitialScoreCard());
   function diceClickCallback(index) {
     let newDiceList = deepClone(allDiceList);
     newDiceList[index].isPressed = !newDiceList[index].isPressed;
@@ -57,7 +66,10 @@ function App() {
             ></Dice>
           ))}
         </div>
-        <ScoreCard value="hello"></ScoreCard>
+        <ScoreCard
+          scoreCard={scoreCard}
+          handleScoreCardUpdate={setScoreCard}
+        ></ScoreCard>
       </header>
     </div>
   );

@@ -1,16 +1,17 @@
 import "./ScoreCard.css";
 
-function ScoreCard({ value }) {
+function ScoreCard({ scoreCard, handleScoreCardUpdate }) {
   return (
     <>
       <p className="score-card-header">ScoreCard</p>
       <div className="score-row">
-        ones<button type="button">Choose</button>
+        ones: {scoreCard.ones} <button type="button">Choose</button>
       </div>
       <div className="score-row">
-        twos<button type="button">Choose</button>
+        twos {scoreCard.twos}
+        <button type="button">Choose</button>
       </div>
-      <div className="total-score">Total Score = 0</div>
+      <div className="total-score">Total Score = {scoreCard.totalScore}</div>
     </>
   );
 }
