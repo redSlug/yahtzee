@@ -10,7 +10,7 @@ font-weight: bold;
 
 .score-row {
     background-color: lightblue;
-    color: black;
+    color: darkred;
 }
 .total-score {
     background-color: lightgreen;
