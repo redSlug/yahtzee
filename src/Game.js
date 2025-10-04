@@ -1,4 +1,4 @@
-import "./App.css";
+import "./Game.css";
 import Dice from "./Dice";
 import ScoreCard from "./Scorecard";
 
@@ -27,7 +27,7 @@ function rollAllDice() {
   });
 }
 
-function App() {
+function Game() {
   const [allDice, setAllDice] = useState(rollAllDice());
   const [rollCount, setRollCount] = useState(INITIAL_ROLL_COUNT);
   const [scoreCard, setScoreCard] = useState(getInitialScoreCard());
@@ -89,4 +89,4 @@ function App() {
   );
 }
 
-export default App;
+export default Game;
