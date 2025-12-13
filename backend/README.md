@@ -21,3 +21,12 @@ turso auth login --headless
 this allows us to run turso commands, like migrate. 
 
 note, this is different from the `.env` file credentials which allow database level auth.
+
+## db
+https://app.turso.tech/greenrabbit/databases/yahtsee-game-state/data
+
+see games
+http://localhost:5000/games
+
+# next steps
+- write code to create a game and add players
