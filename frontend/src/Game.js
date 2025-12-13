@@ -2,7 +2,7 @@ import "./Game.css";
 import Dice from "./Dice";
 import ScoreCard from "./Scorecard";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { deepClone } from "./utilities";
 import RollButton from "./RollButton";
 
@@ -35,6 +35,28 @@ function Game() {
   const [allDice, setAllDice] = useState(rollAllDice());
   const [rollCount, setRollCount] = useState(INITIAL_ROLL_COUNT);
   const [scoreCard, setScoreCard] = useState(getInitialScoreCard());
+  const [games, setGames] = useState([]);
+  const [isLoadingGames, setIsLoadingGames] = useState(true);
+
+  useEffect(() => {
+    const fetchGames = async () => {
+      setIsLoadingGames(true);
+      try {
+        const res = await fetch("http://localhost:5000/games");
+        if (!res.ok) {
+          throw new Error(`HTTP error! status: ${res.status}`);
+        }
+        const data = await res.json();
+        setGames(data);
+      } catch (err) {
+        console.log(err);
+      } finally {
+        setIsLoadingGames(false);
+      }
+    };
+    fetchGames();
+  }, []);
+
   function diceClickCallback(index) {
     let newDice = deepClone(allDice);
     newDice[index].isPressed = !newDice[index].isPressed;
@@ -65,6 +87,20 @@ function Game() {
   return (
     <div className="App">
       <header className="App-header">
+        <div className="games-list">
+          <h2>Games</h2>
+          {isLoadingGames && <p>Loading games...</p>}
+          {!isLoadingGames && games.length === 0 && <p>No games available</p>}
+          {!isLoadingGames && games.length > 0 && (
+            <div>
+              {games.map((game) => (
+                <div key={game.id}>
+                  Game #{game.id} — created at {game.created_at}
+                </div>
+              ))}
+            </div>
+          )}
+        </div>
         <RollButton
           onClick={rollNonPressedDice}
           isDisabled={rollCount <= 0}
