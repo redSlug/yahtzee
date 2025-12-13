@@ -24,3 +24,7 @@
   background-color: cornflowerblue;
 }
 
+.roll-count-message {
+  font-size: calc(10px + 2vmin);
+  color: #000000;
+}

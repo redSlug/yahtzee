@@ -70,7 +70,7 @@ function Game() {
           isDisabled={rollCount <= 0}
         ></RollButton>
         <div className={"roll-count-message"}>
-          you have {rollCount} rolls left!!
+          you have {rollCount} rolls left! <br />
           {rollCount === 0 ? "you must click score card" : ""}
         </div>
         <div>
