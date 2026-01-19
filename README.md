@@ -5,13 +5,6 @@ Utility for rolling dice
 
 ![screenshot](screenshot.png)
 
-## Develop
-
-```bash
-npm i
-npm start
-```
-
 ## Future ideas
 - make dice look more dice like
 - add a counter of rolls

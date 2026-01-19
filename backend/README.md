@@ -1,26 +1,33 @@
 # backend
 
+## Setup
+Add `.env` file credentials to allow database level auth
 
-## commands
-to run commands like `turso` we need to access linux
-
-to run linux commands like `turso` tursin terminal run the following.
-
+## Develop
 ```bash
-wsl
-```
-Note: the ubuntu / linux password is the windows pin
+cd backend
 
-login to turso
+# enable linux in order to fun commands like  `turso` 
+wsl
+
+# login to turso with github
+turso auth login --headless
+
+# bring up the server
+npm start
+```
+
+
+## helpful commands
+
+
 https://docs.turso.tech/cli/authentication
 
-```bash
-turso auth login --headless
-```
+
 
 this allows us to run turso commands, like migrate. 
 
-note, this is different from the `.env` file credentials which allow database level auth.
+note, this is different from the .
 
 
 test
