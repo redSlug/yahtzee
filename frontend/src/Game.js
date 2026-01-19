@@ -5,6 +5,7 @@ import ScoreCard from "./Scorecard";
 import { useEffect, useState } from "react";
 import { deepClone } from "./utilities";
 import RollButton from "./RollButton";
+import Button from "./Button";
 
 const INITIAL_ROLL_COUNT = 3;
 
@@ -37,6 +38,7 @@ function Game() {
   const [scoreCard, setScoreCard] = useState(getInitialScoreCard());
   const [games, setGames] = useState([]);
   const [isLoadingGames, setIsLoadingGames] = useState(true);
+  const [isPlayingGame, setIsPlayingGame] = useState(false);
 
   useEffect(() => {
     const fetchGames = async () => {
@@ -84,49 +86,73 @@ function Game() {
     setRollCount(INITIAL_ROLL_COUNT);
   }
 
+  function startGame() {
+    setIsPlayingGame(true);
+  }
+
+  if (isPlayingGame) {
+    return (
+      <div className="App">
+        <header className="App-header">
+          <div className="games-list">
+            <h2>Games</h2>
+            {isLoadingGames && <p>Loading games...</p>}
+            {!isLoadingGames && games.length === 0 && <p>No games available</p>}
+            {!isLoadingGames && games.length > 0 && (
+              <div>
+                {games.map((game) => (
+                  <div key={game.id}>
+                    Game #{game.id} — created at {game.created_at}
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
+          <RollButton
+            onClick={rollNonPressedDice}
+            isDisabled={rollCount <= 0}
+          ></RollButton>
+          <div className={"roll-count-message"}>
+            you have {rollCount} rolls left! <br />
+            {rollCount === 0 ? "you must click score card" : ""}
+          </div>
+          <div>
+            {allDice.map((item, index) => (
+              <Dice
+                value={item.value}
+                key={index}
+                onClick={() => diceClickCallback(index)}
+                isPressed={item.isPressed}
+              ></Dice>
+            ))}
+          </div>
+          <ScoreCard
+            allDice={allDice}
+            scoreCard={scoreCard}
+            handleScoreCardUpdate={updateScoreCard}
+          ></ScoreCard>
+        </header>
+      </div>
+    );
+  }
   return (
-    <div className="App">
-      <header className="App-header">
-        <div className="games-list">
-          <h2>Games</h2>
-          {isLoadingGames && <p>Loading games...</p>}
-          {!isLoadingGames && games.length === 0 && <p>No games available</p>}
-          {!isLoadingGames && games.length > 0 && (
-            <div>
-              {games.map((game) => (
-                <div key={game.id}>
-                  Game #{game.id} — created at {game.created_at}
-                </div>
-              ))}
-            </div>
-          )}
-        </div>
-        <RollButton
-          onClick={rollNonPressedDice}
-          isDisabled={rollCount <= 0}
-        ></RollButton>
-        <div className={"roll-count-message"}>
-          you have {rollCount} rolls left! <br />
-          {rollCount === 0 ? "you must click score card" : ""}
-        </div>
-        <div>
-          {allDice.map((item, index) => (
-            <Dice
-              value={item.value}
-              key={index}
-              onClick={() => diceClickCallback(index)}
-              isPressed={item.isPressed}
-            ></Dice>
-          ))}
-        </div>
-        <ScoreCard
-          allDice={allDice}
-          scoreCard={scoreCard}
-          handleScoreCardUpdate={updateScoreCard}
-        ></ScoreCard>
-      </header>
+    <div>
+      <Button
+        label="start game!"
+        onClick={startGame}
+        isDisabled={false}
+      ></Button>
+      <Button
+        label="join game!"
+        onClick={startGame}
+        isDisabled={false}
+      ></Button>
+      <Button
+        label="single player!"
+        onClick={startGame}
+        isDisabled={false}
+      ></Button>
     </div>
   );
 }
-
 export default Game;
